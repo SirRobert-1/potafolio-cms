@@ -24,16 +24,16 @@ export default {
         {
           type: 'block',
           styles: [
-            { title: 'Normal', value: 'normal' },
-            { title: 'Heading 2', value: 'h2' },
-            { title: 'Heading 3', value: 'h3' },
+            {title: 'Normal', value: 'normal'},
+            {title: 'Heading 2', value: 'h2'},
+            {title: 'Heading 3', value: 'h3'},
           ],
-          lists: [{ title: 'Bullet', value: 'bullet' }],
+          lists: [{title: 'Bullet', value: 'bullet'}],
           marks: {
             decorators: [
-              { title: 'Strong', value: 'strong' },
-              { title: 'Emphasis', value: 'em' },
-              { title: 'Code', value: 'code' },
+              {title: 'Strong', value: 'strong'},
+              {title: 'Emphasis', value: 'em'},
+              {title: 'Code', value: 'code'},
             ],
           },
         },
@@ -77,8 +77,24 @@ export default {
       type: 'array',
       of: [
         {
-          type: 'reference',
-          to: [{ type: 'tecnologia' }],
+          type: 'object',
+          fields: [
+            {
+              name: 'tecnologia',
+              title: 'Tecnología',
+              type: 'reference',
+              to: [{type: 'tecnologia'}],
+              validation: (Rule) => Rule.required(),
+            },
+            {
+              name: 'color',
+              title: 'Color del Badge',
+              type: 'string',
+              description: 'Color en hex o nombre de Tailwind (ej: #3b82f6 o bg-blue-500)',
+              initialValue: '#3b82f6',
+              validation: (Rule) => Rule.required(),
+            },
+          ],
         },
       ],
       validation: (Rule) => Rule.required().min(1),
