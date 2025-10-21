@@ -95,6 +95,21 @@ export default {
               validation: (Rule) => Rule.required(),
             },
           ],
+          preview: {
+            select: {
+              title: 'tecnologia.nombre',
+              media: 'tecnologia.icono',
+              color: 'color',
+            },
+            prepare(selection) {
+              const {title, media, color} = selection
+              return {
+                title: title || 'Sin tecnología',
+                media,
+                subtitle: color,
+              }
+            },
+          },
         },
       ],
       validation: (Rule) => Rule.required().min(1),
